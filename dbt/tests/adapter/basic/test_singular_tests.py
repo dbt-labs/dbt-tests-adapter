@@ -6,7 +6,7 @@ from dbt.tests.adapter.basic.files import (
 from dbt.tests.util import check_result_nodes_by_name, run_dbt
 
 
-class BaseDataTests:
+class BaseSingularTests:
     @pytest.fixture(scope="class")
     def tests(self):
         return {
@@ -16,9 +16,9 @@ class BaseDataTests:
 
     @pytest.fixture(scope="class")
     def project_config_update(self):
-        return {"name": "data_tests"}
+        return {"name": "singular_tests"}
 
-    def test_data_tests(self, project):
+    def test_singular_tests(self, project):
         # test command
         results = run_dbt(["test"])
         assert len(results) == 2
@@ -34,5 +34,5 @@ class BaseDataTests:
                 assert result.status == "fail"
 
 
-class TestDataTests(BaseDataTests):
+class TestSingularTests(BaseSingularTests):
     pass

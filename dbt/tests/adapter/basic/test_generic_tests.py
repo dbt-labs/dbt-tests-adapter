@@ -2,25 +2,25 @@ import pytest
 from dbt.tests.util import run_dbt
 from dbt.tests.adapter.basic.files import (
     seeds_base_csv,
-    schema_test_seed_yml,
+    generic_test_seed_yml,
     base_view_sql,
     base_table_sql,
     schema_base_yml,
-    schema_test_view_yml,
-    schema_test_table_yml,
+    generic_test_view_yml,
+    generic_test_table_yml,
 )
 
 
-class BaseSchemaTests:
+class BaseGenericTests:
     @pytest.fixture(scope="class")
     def project_config_update(self):
-        return {"name": "schema_test"}
+        return {"name": "generic_tests"}
 
     @pytest.fixture(scope="class")
     def seeds(self):
         return {
             "base.csv": seeds_base_csv,
-            "schema.yml": schema_test_seed_yml,
+            "schema.yml": generic_test_seed_yml,
         }
 
     @pytest.fixture(scope="class")
@@ -29,11 +29,11 @@ class BaseSchemaTests:
             "view_model.sql": base_view_sql,
             "table_model.sql": base_table_sql,
             "schema.yml": schema_base_yml,
-            "schema_view.yml": schema_test_view_yml,
-            "schema_table.yml": schema_test_table_yml,
+            "schema_view.yml": generic_test_view_yml,
+            "schema_table.yml": generic_test_table_yml,
         }
 
-    def test_schema_tests(self, project):
+    def test_generic_tests(self, project):
         # seed command
         results = run_dbt(["seed"])
 
@@ -50,5 +50,5 @@ class BaseSchemaTests:
         assert len(results) == 3
 
 
-class TestSchemaTests(BaseSchemaTests):
+class TestGenericTests(BaseGenericTests):
     pass
