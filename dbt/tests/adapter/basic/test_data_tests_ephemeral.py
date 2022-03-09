@@ -39,7 +39,7 @@ class BaseDataTestsEphemeral:
             "name": "data_test_ephemeral_models",
         }
 
-    def test_data_test_ephemerals(self, project):
+    def test_data_tests_ephemeral(self, project):
         # check results from seed command
         results = run_dbt(["seed"])
         assert len(results) == 1
