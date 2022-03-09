@@ -6,7 +6,7 @@ from dbt.tests.adapter.basic.files import (
 from dbt.tests.util import check_result_nodes_by_name, run_dbt
 
 
-class TestDataTests:
+class BaseDataTests:
     @pytest.fixture(scope="class")
     def tests(self):
         return {
@@ -32,3 +32,7 @@ class TestDataTests:
                 assert result.status == "pass"
             elif result.node.name == "failing":
                 assert result.status == "fail"
+
+
+class TestDataTests(BaseDataTests):
+    pass

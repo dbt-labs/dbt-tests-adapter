@@ -15,7 +15,7 @@ from dbt.tests.adapter.basic.files import (
 )
 
 
-class TestBase:
+class BaseSimpleMaterializations:
     @pytest.fixture(scope="class")
     def models(self):
         return {
@@ -99,3 +99,7 @@ class TestBase:
             "swappable": "table",
         }
         check_relation_types(project.adapter, expected)
+
+
+class TestSimpleMaterializations(BaseSimpleMaterializations):
+    pass

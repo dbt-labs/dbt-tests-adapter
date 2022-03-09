@@ -14,7 +14,7 @@ def check_relation_rows(project, snapshot_name, count):
     assert result[0] == count
 
 
-class TestSnapshotTimestamp:
+class BaseSnapshotTimestamp:
     @pytest.fixture(scope="class")
     def seeds(self):
         return {
@@ -84,3 +84,7 @@ class TestSnapshotTimestamp:
 
         # snapshot still has 30 rows because timestamp not updated
         check_relation_rows(project, "ts_snapshot", 30)
+
+
+class TestSnapshotTimestamp(BaseSnapshotTimestamp):
+    pass

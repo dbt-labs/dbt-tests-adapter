@@ -16,7 +16,7 @@ from dbt.tests.adapter.basic.files import (
 )
 
 
-class TestEphemeral:
+class BaseEphemeral:
     @pytest.fixture(scope="class")
     def project_config_update(self):
         return {"name": "ephemeral"}
@@ -64,3 +64,7 @@ class TestEphemeral:
         manifest = get_manifest(project.project_root)
         assert len(manifest.nodes) == 4
         assert len(manifest.sources) == 1
+
+
+class TestEphemeral(BaseEphemeral):
+    pass

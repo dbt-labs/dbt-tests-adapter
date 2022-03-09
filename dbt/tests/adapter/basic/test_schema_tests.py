@@ -11,7 +11,7 @@ from dbt.tests.adapter.basic.files import (
 )
 
 
-class TestSchemaTests:
+class BaseSchemaTests:
     @pytest.fixture(scope="class")
     def project_config_update(self):
         return {"name": "schema_test"}
@@ -48,3 +48,7 @@ class TestSchemaTests:
         # test command, all tests
         results = run_dbt(["test"])
         assert len(results) == 3
+
+
+class TestSchemaTests(BaseSchemaTests):
+    pass

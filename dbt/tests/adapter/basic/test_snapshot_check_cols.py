@@ -15,7 +15,7 @@ def check_relation_rows(project, snapshot_name, count):
     assert result[0] == count
 
 
-class TestSnapshotCheckCols:
+class BaseSnapshotCheckCols:
     @pytest.fixture(scope="class")
     def project_config_update(self):
         return {"name": "snapshot_strategy_check_cols"}
@@ -106,3 +106,7 @@ class TestSnapshotCheckCols:
         check_relation_rows(project, "cc_name_snapshot", 30)
         # does not see name updates
         check_relation_rows(project, "cc_date_snapshot", 30)
+
+
+class TestSnapshotCheckCols(BaseSnapshotCheckCols):
+    pass

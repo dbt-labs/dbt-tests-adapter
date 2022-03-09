@@ -2,7 +2,7 @@ from dbt.tests.util import run_dbt
 import os
 
 
-class TestEmpy:
+class BaseEmpty:
     def test_empty(self, project):
         # check seed
         results = run_dbt(["seed"])
@@ -23,3 +23,7 @@ class TestEmpy:
         assert os.path.exists(catalog_path)
         assert len(catalog.nodes) == 0
         assert len(catalog.sources) == 0
+
+
+class TestEmpty(BaseEmpty):
+    pass

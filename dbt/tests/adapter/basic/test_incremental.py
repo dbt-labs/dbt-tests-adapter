@@ -8,7 +8,7 @@ from dbt.tests.adapter.basic.files import (
 )
 
 
-class TestIncremental:
+class BaseIncremental:
     @pytest.fixture(scope="class")
     def project_config_update(self):
         return {"name": "incremental"}
@@ -56,3 +56,7 @@ class TestIncremental:
         catalog = run_dbt(["docs", "generate"])
         assert len(catalog.nodes) == 3
         assert len(catalog.sources) == 1
+
+
+class Testincremental(BaseIncremental):
+    pass
